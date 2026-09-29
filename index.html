@@ -2,7 +2,7 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>ARYNEXA | Digital Marketing • AI • Growth</title>
     
     <!-- Google Fonts: Poppins + Noto Sans Devanagari -->
@@ -15,6 +15,9 @@
     
     <!-- FontAwesome Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- QR Code Generator Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
     <!-- Custom Tailwind Configuration -->
     <script>
@@ -35,10 +38,21 @@
     </script>
 
     <style>
-        body {
+        * {
+            box-sizing: border-box;
+        }
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden;
             font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif;
             background-color: #0b1220;
             color: #ffffff;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
         }
         .gradient-text {
             background: linear-gradient(135deg, #2563eb 0%, #a855f7 100%);
@@ -67,46 +81,41 @@
 
     <!-- 1. Header / Navbar -->
     <header class="fixed top-0 left-0 w-full bg-[#0b1220]/90 backdrop-blur-md border-b border-gray-800/80 z-50">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <!-- Logo Section -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
             <a href="#" class="flex items-center space-x-3 group">
-                <div class="text-2xl font-extrabold tracking-wider text-white">
+                <div class="text-xl sm:text-2xl font-extrabold tracking-wider text-white">
                     ARYNEXA<span class="text-[#2563eb] inline-block transition group-hover:translate-x-0.5">.</span>
                 </div>
             </a>
 
-            <!-- Navigation Links (Desktop) -->
             <nav class="hidden md:flex space-x-8 text-gray-300 font-medium text-sm tracking-wide">
                 <a href="#about" class="hover:text-[#2563eb] transition" data-en="About Us" data-hi="हमारे बारे में">About Us</a>
                 <a href="#services" class="hover:text-[#2563eb] transition" data-en="Services" data-hi="सेवाएं">Services</a>
+                <a href="#card" class="hover:text-[#2563eb] transition" data-en="Digital Card" data-hi="डिजिटल कार्ड">Digital Card</a>
                 <a href="#faq" class="hover:text-[#2563eb] transition" data-en="FAQ" data-hi="सवाल-जवाब">FAQ</a>
                 <a href="#contact" class="hover:text-[#2563eb] transition" data-en="Contact Us" data-hi="संपर्क करें">Contact Us</a>
             </nav>
 
-            <!-- Actions Section -->
-            <div class="flex items-center space-x-4">
-                <!-- Language Toggle Button -->
+            <div class="flex items-center space-x-3 sm:space-x-4">
                 <button id="langToggle" type="button" class="flex items-center space-x-2 bg-gray-900 border border-gray-700 hover:border-[#2563eb] text-gray-200 px-3 py-1.5 rounded-full text-xs font-semibold transition cursor-pointer select-none">
                     <i class="fa-solid fa-globe text-[#2563eb]"></i>
                     <span id="langLabel">हिंदी</span>
                 </button>
 
-                <!-- CTA Button -->
-                <a href="#contact" class="hidden sm:inline-block bg-[#2563eb] text-white px-6 py-2.5 rounded-full font-medium text-sm hover:bg-blue-700 transition glow-effect" data-en="Get Started" data-hi="शुरू करें">
+                <a href="#contact" class="hidden sm:inline-block bg-[#2563eb] text-white px-5 py-2 rounded-full font-medium text-sm hover:bg-blue-700 transition glow-effect" data-en="Get Started" data-hi="शुरू करें">
                     Get Started
                 </a>
 
-                <!-- Mobile Menu Toggle Button -->
-                <button id="mobileMenuBtn" type="button" class="md:hidden text-gray-300 hover:text-white focus:outline-none text-xl">
+                <button id="mobileMenuBtn" type="button" class="md:hidden text-gray-300 hover:text-white focus:outline-none text-xl p-1">
                     <i class="fa-solid fa-bars" id="menuIcon"></i>
                 </button>
             </div>
         </div>
 
-        <!-- Mobile Navigation Menu -->
         <div id="mobileMenu" class="hidden md:hidden bg-[#0b1220] border-b border-gray-800 px-6 py-4 space-y-3">
             <a href="#about" class="mobile-link block text-gray-300 hover:text-[#2563eb] py-1 text-sm font-medium" data-en="About Us" data-hi="हमारे बारे में">About Us</a>
             <a href="#services" class="mobile-link block text-gray-300 hover:text-[#2563eb] py-1 text-sm font-medium" data-en="Services" data-hi="सेवाएं">Services</a>
+            <a href="#card" class="mobile-link block text-gray-300 hover:text-[#2563eb] py-1 text-sm font-medium" data-en="Digital Card" data-hi="डिजिटल कार्ड">Digital Card</a>
             <a href="#faq" class="mobile-link block text-gray-300 hover:text-[#2563eb] py-1 text-sm font-medium" data-en="FAQ" data-hi="सवाल-जवाब">FAQ</a>
             <a href="#contact" class="mobile-link block text-gray-300 hover:text-[#2563eb] py-1 text-sm font-medium" data-en="Contact Us" data-hi="संपर्क करें">Contact Us</a>
             <a href="#contact" class="mobile-link block text-center bg-[#2563eb] text-white py-2.5 rounded-xl font-medium text-sm mt-2" data-en="Get Started" data-hi="शुरू करें">Get Started</a>
@@ -114,74 +123,74 @@
     </header>
 
     <!-- 2. Hero Section -->
-    <section class="pt-36 pb-20 md:pt-48 md:pb-32 max-w-7xl mx-auto px-6 text-center relative overflow-hidden">
-        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#2563eb]/20 blur-[120px] rounded-full -z-10"></div>
+    <section class="pt-28 pb-16 sm:pt-36 sm:pb-20 md:pt-48 md:pb-32 max-w-7xl mx-auto px-4 sm:px-6 text-center relative overflow-hidden">
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-[#2563eb]/20 blur-[100px] sm:blur-[120px] rounded-full -z-10"></div>
 
-        <span class="inline-flex items-center gap-2 text-[#2563eb] bg-blue-950/60 border border-blue-800/50 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase mb-6">
+        <span class="inline-flex items-center gap-2 text-[#2563eb] bg-blue-950/60 border border-blue-800/50 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-semibold tracking-wider uppercase mb-6">
             <span class="w-2 h-2 rounded-full bg-[#2563eb] animate-pulse"></span>
             DIGITAL MARKETING • AI • GROWTH
         </span>
         
-        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight max-w-4xl mx-auto">
+        <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight max-w-4xl mx-auto">
             <span data-en="Scale Your Brand With" data-hi="अपने ब्रांड को तेजी से बढ़ाएं">Scale Your Brand With</span> <br>
             <span class="gradient-text" data-en="AI-Driven Digital Marketing" data-hi="AI-आधारित डिजिटल मार्केटिंग से">AI-Driven Digital Marketing</span>
         </h1>
         
-        <p class="text-base md:text-lg text-gray-400 mt-6 max-w-2xl mx-auto font-light leading-relaxed" data-en="At ARYNEXA, we combine modern marketing, AI technology, and proven growth strategies to multiply your business revenue." data-hi="ARYNEXA में हम आधुनिक मार्केटिंग, कृत्रिम बुद्धिमत्ता (AI) तकनीक और प्रमाणित रणनीतियों के साथ आपके व्यवसाय का रेवेन्यू बढ़ाते हैं।">
+        <p class="text-sm sm:text-base md:text-lg text-gray-400 mt-4 sm:mt-6 max-w-2xl mx-auto font-light leading-relaxed px-2" data-en="At ARYNEXA, we combine modern marketing, AI technology, and proven growth strategies to multiply your business revenue." data-hi="ARYNEXA में हम आधुनिक मार्केटिंग, कृत्रिम बुद्धिमत्ता (AI) तकनीक और प्रमाणित रणनीतियों के साथ आपके व्यवसाय का रेवेन्यू बढ़ाते हैं।">
             At ARYNEXA, we combine modern marketing, AI technology, and proven growth strategies to multiply your business revenue.
         </p>
         
-        <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-            <a href="#contact" class="bg-[#2563eb] text-white px-8 py-4 rounded-xl font-semibold text-base hover:bg-blue-700 transition glow-effect flex items-center justify-center gap-2">
-                <span data-en="Book A Free Growth Call" data-hi="फ्री स्ट्रैटेजी कॉल बुक करें">Book A Free Growth Call</span> <i class="fa-solid fa-arrow-right text-sm"></i>
+        <div class="mt-8 sm:mt-10 flex flex-col sm:flex-row justify-center gap-4 px-4">
+            <a href="#contact" class="bg-[#2563eb] text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-semibold text-sm sm:text-base hover:bg-blue-700 transition glow-effect flex items-center justify-center gap-2">
+                <span data-en="Book A Free Growth Call" data-hi="फ्री स्ट्रैटेजी कॉल बुक करें">Book A Free Growth Call</span> <i class="fa-solid fa-arrow-right text-xs sm:text-sm"></i>
             </a>
-            <a href="#about" class="bg-gray-900/80 border border-gray-800 text-gray-300 px-8 py-4 rounded-xl font-semibold text-base hover:border-gray-700 transition" data-en="Learn About Us" data-hi="हमारे बारे में जानें">
-                Learn About Us
+            <a href="#card" class="bg-gray-900/80 border border-gray-800 text-gray-300 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-semibold text-sm sm:text-base hover:border-gray-700 transition" data-en="Digital Card" data-hi="डिजिटल कार्ड">
+                Digital Card
             </a>
         </div>
     </section>
 
     <!-- Trust Stats Bar -->
-    <section class="border-y border-gray-800/80 bg-gray-900/40 py-10">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+    <section class="border-y border-gray-800/80 bg-gray-900/40 py-8 sm:py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 text-center">
             <div>
-                <h3 class="text-3xl md:text-4xl font-extrabold text-white">10x</h3>
-                <p class="text-gray-400 text-xs md:text-sm mt-1 uppercase tracking-wider" data-en="Average ROI" data-hi="औसत लाभ (ROI)">Average ROI</p>
+                <h3 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white">10x</h3>
+                <p class="text-gray-400 text-[10px] sm:text-xs md:text-sm mt-1 uppercase tracking-wider" data-en="Average ROI" data-hi="औसत लाभ (ROI)">Average ROI</p>
             </div>
             <div>
-                <h3 class="text-3xl md:text-4xl font-extrabold text-[#2563eb]">₹5Cr+</h3>
-                <p class="text-gray-400 text-xs md:text-sm mt-1 uppercase tracking-wider" data-en="Ad Spend Managed" data-hi="विज्ञापन बजट प्रबंधित">Ad Spend Managed</p>
+                <h3 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#2563eb]">₹5Cr+</h3>
+                <p class="text-gray-400 text-[10px] sm:text-xs md:text-sm mt-1 uppercase tracking-wider" data-en="Ad Spend Managed" data-hi="विज्ञापन बजट प्रबंधित">Ad Spend Managed</p>
             </div>
             <div>
-                <h3 class="text-3xl md:text-4xl font-extrabold text-white">100+</h3>
-                <p class="text-gray-400 text-xs md:text-sm mt-1 uppercase tracking-wider" data-en="Brands Scaled" data-hi="ब्रांड्स को सफलता मिली">Brands Scaled</p>
+                <h3 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white">100+</h3>
+                <p class="text-gray-400 text-[10px] sm:text-xs md:text-sm mt-1 uppercase tracking-wider" data-en="Brands Scaled" data-hi="ब्रांड्स को सफलता मिली">Brands Scaled</p>
             </div>
             <div>
-                <h3 class="text-3xl md:text-4xl font-extrabold text-[#2563eb]">99%</h3>
-                <p class="text-gray-400 text-xs md:text-sm mt-1 uppercase tracking-wider" data-en="Client Satisfaction" data-hi="ग्राहक संतुष्टि दर">Client Satisfaction</p>
+                <h3 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#2563eb]">99%</h3>
+                <p class="text-gray-400 text-[10px] sm:text-xs md:text-sm mt-1 uppercase tracking-wider" data-en="Client Satisfaction" data-hi="ग्राहक संतुष्टि दर">Client Satisfaction</p>
             </div>
         </div>
     </section>
 
     <!-- 3. About Us Section -->
-    <section id="about" class="py-24 max-w-7xl mx-auto px-6">
-        <div class="grid md:grid-cols-2 gap-12 items-center">
+    <section id="about" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div>
                 <span class="text-[#2563eb] font-semibold text-xs uppercase tracking-widest" data-en="Who We Are" data-hi="हम कौन हैं">Who We Are</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-white mt-2 leading-tight" data-en="Driving Business Expansion With Next-Gen AI & Marketing" data-hi="AI और आधुनिक तकनीक से आपके बिजनेस को नई ऊंचाइयों पर ले जाना">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white mt-2 leading-tight" data-en="Driving Business Expansion With Next-Gen AI & Marketing" data-hi="AI और आधुनिक तकनीक से आपके बिजनेस को नई ऊंचाइयों पर ले जाना">
                     Driving Business Expansion With Next-Gen AI & Marketing
                 </h2>
-                <p class="text-gray-400 mt-6 text-sm leading-relaxed" data-en="ARYNEXA is a modern growth marketing agency combining traditional digital marketing with advanced AI techniques to scale businesses predictability and rapidly." data-hi="ARYNEXA एक आधुनिक ग्रोथ मार्केटिंग एजेंसी है जो पारंपरिक डिजिटल मार्केटिंग और उन्नत AI तकनीकों को मिलाकर व्यवसायों को तेज़ी से स्केल करती है।">
+                <p class="text-gray-400 mt-4 sm:mt-6 text-xs sm:text-sm leading-relaxed" data-en="ARYNEXA is a modern growth marketing agency combining traditional digital marketing with advanced AI techniques to scale businesses predictability and rapidly." data-hi="ARYNEXA एक आधुनिक ग्रोथ मार्केटिंग एजेंसी है जो पारंपरिक डिजिटल मार्केटिंग और उन्नत AI तकनीकों को मिलाकर व्यवसायों को तेज़ी से स्केल करती है।">
                     ARYNEXA is a modern growth marketing agency combining traditional digital marketing with advanced AI techniques to scale businesses predictability and rapidly.
                 </p>
                 
-                <div class="mt-8 space-y-4">
+                <div class="mt-6 sm:mt-8 space-y-4">
                     <div class="flex items-start space-x-4">
                         <div class="w-10 h-10 bg-[#2563eb]/20 text-[#2563eb] rounded-xl flex items-center justify-center shrink-0">
                             <i class="fa-solid fa-brain text-base"></i>
                         </div>
                         <div>
-                            <h4 class="text-white font-semibold text-base" data-en="AI-Driven Insights" data-hi="AI-संचालित सटीक विश्लेषण">AI-Driven Insights</h4>
+                            <h4 class="text-white font-semibold text-sm sm:text-base" data-en="AI-Driven Insights" data-hi="AI-संचालित सटीक विश्लेषण">AI-Driven Insights</h4>
                             <p class="text-gray-400 text-xs mt-0.5 leading-relaxed" data-en="Hyper-targeted audience funnels and smart automation that maximize conversions." data-hi="सटीक ग्राहक लक्षित करने के लिए स्मार्ट AI फनल और ऑटोमेशन।">Hyper-targeted audience funnels and smart automation that maximize conversions.</p>
                         </div>
                     </div>
@@ -191,17 +200,17 @@
                             <i class="fa-solid fa-chart-line text-base"></i>
                         </div>
                         <div>
-                            <h4 class="text-white font-semibold text-base" data-en="ROI-Focused Approach" data-hi="उच्च लाभ (ROI) पर ध्यान">ROI-Focused Approach</h4>
+                            <h4 class="text-white font-semibold text-sm sm:text-base" data-en="ROI-Focused Approach" data-hi="उच्च लाभ (ROI) पर ध्यान">ROI-Focused Approach</h4>
                             <p class="text-gray-400 text-xs mt-0.5 leading-relaxed" data-en="Every campaign is optimized for measurable revenue growth and brand equity." data-hi="हर अभियान आपके व्यापारिक विकास और शुद्ध लाभ को ध्यान में रखकर बनाया जाता है।">Every campaign is optimized for measurable revenue growth and brand equity.</p>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="glass-card p-8 md:p-10 rounded-2xl shadow-2xl relative">
-                <div class="absolute -top-3 -right-3 bg-[#2563eb] text-white text-[10px] uppercase tracking-widest font-bold px-3 py-1 rounded-full shadow-lg">Verified Method</div>
-                <h3 class="text-xl font-bold text-white mb-6" data-en="Why Choose ARYNEXA?" data-hi="ARYNEXA को क्यों चुनें?">Why Choose ARYNEXA?</h3>
-                <ul class="space-y-4 text-sm text-gray-300">
+            <div class="glass-card p-6 sm:p-8 md:p-10 rounded-2xl shadow-2xl relative mt-4 md:mt-0">
+                <div class="absolute -top-3 -right-2 sm:-right-3 bg-[#2563eb] text-white text-[9px] sm:text-[10px] uppercase tracking-widest font-bold px-3 py-1 rounded-full shadow-lg">Verified Method</div>
+                <h3 class="text-lg sm:text-xl font-bold text-white mb-6" data-en="Why Choose ARYNEXA?" data-hi="ARYNEXA को क्यों चुनें?">Why Choose ARYNEXA?</h3>
+                <ul class="space-y-4 text-xs sm:text-sm text-gray-300">
                     <li class="flex justify-between items-center pb-3 border-b border-gray-800/80">
                         <span data-en="Data-Driven Campaigns" data-hi="डेटा-संचालित अभियान">Data-Driven Campaigns</span>
                         <span class="text-[#2563eb] font-bold">100%</span>
@@ -223,197 +232,243 @@
         </div>
     </section>
 
-    <!-- 4. Services Section -->
-    <section id="services" class="py-24 border-t border-gray-800/80 bg-gray-900/20">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <span class="text-[#2563eb] font-semibold text-xs uppercase tracking-widest" data-en="Our Expertise" data-hi="हमारी विशेषज्ञता">Our Expertise</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-white mt-2" data-en="Core Services We Provide" data-hi="हमारी मुख्य सेवाएं">Core Services We Provide</h2>
-                <p class="text-gray-400 mt-3 text-sm max-w-lg mx-auto" data-en="Data-driven strategies designed to scale your revenue exponentially." data-hi="आपके बिजनेस के रेवेन्यू को बढ़ाने के लिए तैयार की गई विशेष रणनीतियाँ।">Data-driven strategies designed to scale your revenue exponentially.</p>
+    <!-- NEW SECTION: Digital Business Card -->
+    <section id="card" class="py-16 sm:py-24 border-t border-gray-800/80 bg-gradient-to-b from-gray-900/40 to-[#0b1220]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-12 sm:mb-16">
+                <span class="text-[#2563eb] font-semibold text-xs uppercase tracking-widest" data-en="Quick Connect" data-hi="तुरंत जुड़ें">Quick Connect</span>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white mt-2" data-en="Digital Business Card" data-hi="डिजिटल बिजनेस कार्ड">Digital Business Card</h2>
+                <p class="text-gray-400 mt-2 sm:mt-3 text-xs sm:text-sm max-w-lg mx-auto" data-en="Save our contact details directly to your phone or share with your team." data-hi="हमारी संपर्क जानकारी सीधे अपने फ़ोन में सेव करें या अपनी टीम के साथ शेयर करें।">Save our contact details directly to your phone or share with your team.</p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Service 1 -->
-                <div class="glass-card p-8 rounded-2xl transition duration-300 group">
+            <div class="max-w-md mx-auto glass-card p-6 sm:p-8 rounded-3xl border border-gray-700/60 shadow-2xl relative overflow-hidden">
+                <!-- Glowing effect -->
+                <div class="absolute -top-12 -right-12 w-32 h-32 bg-[#2563eb]/30 rounded-full blur-2xl"></div>
+
+                <!-- Profile Header -->
+                <div class="flex items-center space-x-4 mb-6 relative z-10">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#2563eb] to-purple-600 flex items-center justify-center text-white text-2xl font-bold shadow-lg">
+                        A
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">ARYNEXA</h3>
+                        <p class="text-xs text-[#2563eb] font-semibold uppercase tracking-wider">Digital Agency & Growth Partner</p>
+                        <p class="text-xs text-gray-400 mt-0.5"><i class="fa-solid fa-location-dot text-xs mr-1"></i>Gurugram, HR, India</p>
+                    </div>
+                </div>
+
+                <!-- Contact Quick Links -->
+                <div class="space-y-3 mb-6 relative z-10 text-xs sm:text-sm">
+                    <a href="tel:+919876543210" class="flex items-center justify-between p-3 rounded-xl bg-[#090e1a]/80 hover:bg-[#2563eb]/10 border border-gray-800 hover:border-[#2563eb]/40 transition group">
+                        <div class="flex items-center space-x-3">
+                            <i class="fa-solid fa-phone text-[#2563eb]"></i>
+                            <span class="text-gray-200">+91 98765 43210</span>
+                        </div>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-gray-500 group-hover:text-[#2563eb] text-xs"></i>
+                    </a>
+
+                    <a href="https://wa.me/919876543210" target="_blank" class="flex items-center justify-between p-3 rounded-xl bg-[#090e1a]/80 hover:bg-[#2563eb]/10 border border-gray-800 hover:border-[#2563eb]/40 transition group">
+                        <div class="flex items-center space-x-3">
+                            <i class="fa-brands fa-whatsapp text-emerald-500"></i>
+                            <span class="text-gray-200">WhatsApp Chat</span>
+                        </div>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-gray-500 group-hover:text-[#2563eb] text-xs"></i>
+                    </a>
+
+                    <a href="mailto:contact@arynexa.com" class="flex items-center justify-between p-3 rounded-xl bg-[#090e1a]/80 hover:bg-[#2563eb]/10 border border-gray-800 hover:border-[#2563eb]/40 transition group">
+                        <div class="flex items-center space-x-3">
+                            <i class="fa-solid fa-envelope text-purple-400"></i>
+                            <span class="text-gray-200">contact@arynexa.com</span>
+                        </div>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-gray-500 group-hover:text-[#2563eb] text-xs"></i>
+                    </a>
+                </div>
+
+                <!-- QR Code & Save Contact Button -->
+                <div class="pt-4 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4 relative z-10">
+                    <div class="bg-white p-2 rounded-xl shadow-md shrink-0">
+                        <div id="qrcode"></div>
+                    </div>
+                    <div class="w-full sm:w-auto flex-1">
+                        <button onclick="downloadVCard()" class="w-full bg-[#2563eb] hover:bg-blue-600 text-white text-xs sm:text-sm font-semibold py-3 px-4 rounded-xl transition glow-effect flex justify-center items-center gap-2 cursor-pointer">
+                            <i class="fa-solid fa-address-card"></i>
+                            <span data-en="Save Contact (.vcf)" data-hi="कॉन्टेक्ट सेव करें (.vcf)">Save Contact (.vcf)</span>
+                        </button>
+                        <p class="text-[10px] text-gray-500 text-center mt-2" data-en="Scan QR or click to save directly to Phonebook" data-hi="क्यूआर स्कैन करें या सीधे फोनबुक में सेव करने के लिए क्लिक करें">Scan QR or click to save directly to Phonebook</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Services Section -->
+    <section id="services" class="py-16 sm:py-24 border-t border-gray-800/80 bg-gray-900/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-12 sm:mb-16">
+                <span class="text-[#2563eb] font-semibold text-xs uppercase tracking-widest" data-en="Our Expertise" data-hi="हमारी विशेषज्ञता">Our Expertise</span>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white mt-2" data-en="Core Services We Provide" data-hi="हमारी मुख्य सेवाएं">Core Services We Provide</h2>
+                <p class="text-gray-400 mt-2 sm:mt-3 text-xs sm:text-sm max-w-lg mx-auto" data-en="Data-driven strategies designed to scale your revenue exponentially." data-hi="आपके बिजनेस के रेवेन्यू को बढ़ाने के लिए तैयार की गई विशेष रणनीतियाँ।">Data-driven strategies designed to scale your revenue exponentially.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 sm:gap-8">
+                <div class="glass-card p-6 sm:p-8 rounded-2xl transition duration-300 group">
                     <div class="w-12 h-12 bg-[#2563eb]/10 text-[#2563eb] rounded-xl flex items-center justify-center text-xl mb-6 group-hover:bg-[#2563eb] group-hover:text-white transition">
                         <i class="fa-solid fa-bullseye"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-3" data-en="Performance Marketing" data-hi="परफॉरमेंस मार्केटिंग">Performance Marketing</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed" data-en="Scale lead generation and revenue through targeted Meta & Google ad campaigns." data-hi="Meta और Google विज्ञापनों द्वारा सही ग्राहकों तक पहुँचें और बिक्री बढ़ाएं।">Scale lead generation and revenue through targeted Meta & Google ad campaigns.</p>
+                    <h3 class="text-lg sm:text-xl font-bold text-white mb-3" data-en="Performance Marketing" data-hi="परफॉरमेंस मार्केटिंग">Performance Marketing</h3>
+                    <p class="text-gray-400 text-xs sm:text-sm leading-relaxed" data-en="Scale lead generation and revenue through targeted Meta & Google ad campaigns." data-hi="Meta और Google विज्ञापनों द्वारा सही ग्राहकों तक पहुँचें और बिक्री बढ़ाएं।">Scale lead generation and revenue through targeted Meta & Google ad campaigns.</p>
                 </div>
 
-                <!-- Service 2 -->
-                <div class="glass-card p-8 rounded-2xl transition duration-300 group">
+                <div class="glass-card p-6 sm:p-8 rounded-2xl transition duration-300 group">
                     <div class="w-12 h-12 bg-[#2563eb]/10 text-[#2563eb] rounded-xl flex items-center justify-center text-xl mb-6 group-hover:bg-[#2563eb] group-hover:text-white transition">
                         <i class="fa-solid fa-robot"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-3" data-en="AI Marketing Automation" data-hi="AI मार्केटिंग ऑटोमेशन">AI Marketing Automation</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed" data-en="Automate sales funnels, CRM workflows, and AI chatbots for higher conversions." data-hi="AI वर्कफ़्लो और चैटबॉट्स द्वारा ग्राहक संचार और सेल्स फनल को ऑटोमेट करें।">Automate sales funnels, CRM workflows, and AI chatbots for higher conversions.</p>
+                    <h3 class="text-lg sm:text-xl font-bold text-white mb-3" data-en="AI Marketing Automation" data-hi="AI मार्केटिंग ऑटोमेशन">AI Marketing Automation</h3>
+                    <p class="text-gray-400 text-xs sm:text-sm leading-relaxed" data-en="Automate sales funnels, CRM workflows, and AI chatbots for higher conversions." data-hi="AI वर्कफ़्लो और चैटबॉट्स द्वारा ग्राहक संचार और सेल्स फनल को ऑटोमेट करें।">Automate sales funnels, CRM workflows, and AI chatbots for higher conversions.</p>
                 </div>
 
-                <!-- Service 3 -->
-                <div class="glass-card p-8 rounded-2xl transition duration-300 group">
+                <div class="glass-card p-6 sm:p-8 rounded-2xl transition duration-300 group">
                     <div class="w-12 h-12 bg-[#2563eb]/10 text-[#2563eb] rounded-xl flex items-center justify-center text-xl mb-6 group-hover:bg-[#2563eb] group-hover:text-white transition">
                         <i class="fa-solid fa-chart-line"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-3" data-en="SEO & Brand Growth" data-hi="SEO और ब्रांड ग्रोथ">SEO & Brand Growth</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed" data-en="Rank higher on search engines to drive long-term, high-intent organic traffic." data-hi="Google सर्च में ऊपर आएं और बिना विज्ञापन खर्च किए ऑर्गेनिक ग्राहक पाएं।">Rank higher on search engines to drive long-term, high-intent organic traffic.</p>
+                    <h3 class="text-lg sm:text-xl font-bold text-white mb-3" data-en="SEO & Brand Growth" data-hi="SEO और ब्रांड ग्रोथ">SEO & Brand Growth</h3>
+                    <p class="text-gray-400 text-xs sm:text-sm leading-relaxed" data-en="Rank higher on search engines to drive long-term, high-intent organic traffic." data-hi="Google सर्च में ऊपर आएं और बिना विज्ञापन खर्च किए ऑर्गेनिक ग्राहक पाएं।">Rank higher on search engines to drive long-term, high-intent organic traffic.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- 5. FAQ Section -->
-    <section id="faq" class="py-24 max-w-4xl mx-auto px-6">
-        <div class="text-center mb-16">
+    <section id="faq" class="py-16 sm:py-24 max-w-4xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-12 sm:mb-16">
             <span class="text-[#2563eb] font-semibold text-xs uppercase tracking-widest" data-en="Got Questions?" data-hi="कोई सवाल है?">Got Questions?</span>
-            <h2 class="text-3xl md:text-4xl font-bold text-white mt-2" data-en="Frequently Asked Questions" data-hi="अक्सर पूछे जाने वाले सवाल (FAQ)">Frequently Asked Questions</h2>
-            <p class="text-gray-400 mt-3 text-sm" data-en="Common answers regarding ARYNEXA and our growth methodology." data-hi="ARYNEXA और हमारी सेवाओं से जुड़े कुछ आम सवाल और उनके जवाब।">Common answers regarding ARYNEXA and our growth methodology.</p>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white mt-2" data-en="Frequently Asked Questions" data-hi="अक्सर पूछे जाने वाले सवाल (FAQ)">Frequently Asked Questions</h2>
+            <p class="text-gray-400 mt-2 sm:mt-3 text-xs sm:text-sm" data-en="Common answers regarding ARYNEXA and our growth methodology." data-hi="ARYNEXA और हमारी सेवाओं से जुड़े कुछ आम सवाल और उनके जवाब।">Common answers regarding ARYNEXA and our growth methodology.</p>
         </div>
 
-        <div class="space-y-4">
-            <!-- Accordion Item 1 -->
+        <div class="space-y-3 sm:space-y-4">
             <div class="glass-card rounded-xl overflow-hidden">
-                <button type="button" class="acc-btn w-full text-left p-6 flex justify-between items-center focus:outline-none">
-                    <span class="font-semibold text-white text-base md:text-lg" data-en="How is ARYNEXA different from traditional agencies?" data-hi="ARYNEXA अन्य एजेंसियों से अलग कैसे है?">How is ARYNEXA different from traditional agencies?</span>
-                    <i class="fa-solid fa-chevron-down text-gray-400 text-sm transition-transform duration-300 pointer-events-none"></i>
+                <button type="button" class="acc-btn w-full text-left p-5 sm:p-6 flex justify-between items-center focus:outline-none">
+                    <span class="font-semibold text-white text-sm sm:text-base md:text-lg pr-2" data-en="How is ARYNEXA different from traditional agencies?" data-hi="ARYNEXA अन्य एजेंसियों से अलग कैसे है?">How is ARYNEXA different from traditional agencies?</span>
+                    <i class="fa-solid fa-chevron-down text-gray-400 text-xs sm:text-sm transition-transform duration-300 pointer-events-none shrink-0"></i>
                 </button>
-                <div class="acc-body hidden px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-gray-800/50 pt-4" data-en="We don't just run ads; we build full AI-automated growth funnels, hyper-targeted campaigns, and real-time analytics dashboards focused on bottom-line profit." data-hi="हम सिर्फ विज्ञापन नहीं चलाते, बल्कि AI ऑटोमेशन, लक्षित सेल्स फनल और वास्तविक डेटा का उपयोग करके अधिकतम रिटर्न (ROI) दिलाते हैं।">
+                <div class="acc-body hidden px-5 sm:px-6 pb-5 sm:pb-6 text-gray-400 text-xs sm:text-sm leading-relaxed border-t border-gray-800/50 pt-4" data-en="We don't just run ads; we build full AI-automated growth funnels, hyper-targeted campaigns, and real-time analytics dashboards focused on bottom-line profit." data-hi="हम सिर्फ विज्ञापन नहीं चलाते, बल्कि AI ऑटोमेशन, लक्षित सेल्स फनल और वास्तविक डेटा का उपयोग करके अधिकतम रिटर्न (ROI) दिलाते हैं।">
                     We don't just run ads; we build full AI-automated growth funnels, hyper-targeted campaigns, and real-time analytics dashboards focused on bottom-line profit.
                 </div>
             </div>
 
-            <!-- Accordion Item 2 -->
             <div class="glass-card rounded-xl overflow-hidden">
-                <button type="button" class="acc-btn w-full text-left p-6 flex justify-between items-center focus:outline-none">
-                    <span class="font-semibold text-white text-base md:text-lg" data-en="How fast can we expect results?" data-hi="परिणाम (Results) दिखने में कितना समय लगता है?">How fast can we expect results?</span>
-                    <i class="fa-solid fa-chevron-down text-gray-400 text-sm transition-transform duration-300 pointer-events-none"></i>
+                <button type="button" class="acc-btn w-full text-left p-5 sm:p-6 flex justify-between items-center focus:outline-none">
+                    <span class="font-semibold text-white text-sm sm:text-base md:text-lg pr-2" data-en="How fast can we expect results?" data-hi="परिणाम (Results) दिखने में कितना समय लगता है?">How fast can we expect results?</span>
+                    <i class="fa-solid fa-chevron-down text-gray-400 text-xs sm:text-sm transition-transform duration-300 pointer-events-none shrink-0"></i>
                 </button>
-                <div class="acc-body hidden px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-gray-800/50 pt-4" data-en="Paid advertising campaigns start delivering leads within the first 7–14 days. Sustainable SEO and brand positioning take 60–90 days for optimal traction." data-hi="पेड विज्ञापनों से पहले 7 से 14 दिनों में परिणाम मिलना शुरू हो जाते हैं। ऑर्गेनिक SEO और ब्रांड ग्रोथ फनल में 60 से 90 दिनों का समय लगता है।">
+                <div class="acc-body hidden px-5 sm:px-6 pb-5 sm:pb-6 text-gray-400 text-xs sm:text-sm leading-relaxed border-t border-gray-800/50 pt-4" data-en="Paid advertising campaigns start delivering leads within the first 7–14 days. Sustainable SEO and brand positioning take 60–90 days for optimal traction." data-hi="पेड विज्ञापनों से पहले 7 से 14 दिनों में परिणाम मिलना शुरू हो जाते हैं। ऑर्गेनिक SEO और ब्रांड ग्रोथ फनल में 60 से 90 दिनों का समय लगता है।">
                     Paid advertising campaigns start delivering leads within the first 7–14 days. Sustainable SEO and brand positioning take 60–90 days for optimal traction.
                 </div>
             </div>
 
-            <!-- Accordion Item 3 -->
             <div class="glass-card rounded-xl overflow-hidden">
-                <button type="button" class="acc-btn w-full text-left p-6 flex justify-between items-center focus:outline-none">
-                    <span class="font-semibold text-white text-base md:text-lg" data-en="Which industries do you specialize in?" data-hi="क्या आप हर प्रकार के बिजनेस के साथ काम करते हैं?">Which industries do you specialize in?</span>
-                    <i class="fa-solid fa-chevron-down text-gray-400 text-sm transition-transform duration-300 pointer-events-none"></i>
+                <button type="button" class="acc-btn w-full text-left p-5 sm:p-6 flex justify-between items-center focus:outline-none">
+                    <span class="font-semibold text-white text-sm sm:text-base md:text-lg pr-2" data-en="Which industries do you specialize in?" data-hi="क्या आप हर प्रकार के बिजनेस के साथ काम करते हैं?">Which industries do you specialize in?</span>
+                    <i class="fa-solid fa-chevron-down text-gray-400 text-xs sm:text-sm transition-transform duration-300 pointer-events-none shrink-0"></i>
                 </button>
-                <div class="acc-body hidden px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-gray-800/50 pt-4" data-en="We specialize in scaling E-commerce brands, B2B services, Real Estate, Healthcare, SaaS, and High-Ticket Coaching businesses." data-hi="हम B2B, ई-कॉमर्स, रियल एस्टेट, स्वास्थ्य सेवा, सॉफ्टवेयर (SaaS) और कोचिंग उद्योगों के साथ काम करके उन्हें स्केल करते हैं।">
+                <div class="acc-body hidden px-5 sm:px-6 pb-5 sm:pb-6 text-gray-400 text-xs sm:text-sm leading-relaxed border-t border-gray-800/50 pt-4" data-en="We specialize in scaling E-commerce brands, B2B services, Real Estate, Healthcare, SaaS, and High-Ticket Coaching businesses." data-hi="हम B2B, ई-कॉमर्स, रियल एस्टेट, स्वास्थ्य सेवा, सॉफ्टवेयर (SaaS) और कोचिंग उद्योगों के साथ काम करके उन्हें स्केल करते हैं।">
                     We specialize in scaling E-commerce brands, B2B services, Real Estate, Healthcare, SaaS, and High-Ticket Coaching businesses.
                 </div>
             </div>
 
-            <!-- Accordion Item 4 -->
             <div class="glass-card rounded-xl overflow-hidden">
-                <button type="button" class="acc-btn w-full text-left p-6 flex justify-between items-center focus:outline-none">
-                    <span class="font-semibold text-white text-base md:text-lg" data-en="What happens during the Free Consultation Call?" data-hi="फ्री कंसल्टेशन कॉल में क्या होता है?">What happens during the Free Consultation Call?</span>
-                    <i class="fa-solid fa-chevron-down text-gray-400 text-sm transition-transform duration-300 pointer-events-none"></i>
+                <button type="button" class="acc-btn w-full text-left p-5 sm:p-6 flex justify-between items-center focus:outline-none">
+                    <span class="font-semibold text-white text-sm sm:text-base md:text-lg pr-2" data-en="What happens during the Free Consultation Call?" data-hi="फ्री कंसल्टेशन कॉल में क्या होता है?">What happens during the Free Consultation Call?</span>
+                    <i class="fa-solid fa-chevron-down text-gray-400 text-xs sm:text-sm transition-transform duration-300 pointer-events-none shrink-0"></i>
                 </button>
-                <div class="acc-body hidden px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-gray-800/50 pt-4" data-en="We audit your existing marketing setup, identify key growth bottlenecks, and present a custom 30-day strategy roadmap tailored to your goals." data-hi="हम आपके वर्तमान व्यवसाय का विश्लेषण करते हैं और 30 मिनट की कॉल में आपके बिजनेस के लिए एक कस्टम ग्रोथ रोडमैप साझा करते हैं।">
+                <div class="acc-body hidden px-5 sm:px-6 pb-5 sm:pb-6 text-gray-400 text-xs sm:text-sm leading-relaxed border-t border-gray-800/50 pt-4" data-en="We audit your existing marketing setup, identify key growth bottlenecks, and present a custom 30-day strategy roadmap tailored to your goals." data-hi="हम आपके वर्तमान व्यवसाय का विश्लेषण करते हैं और 30 मिनट की कॉल में आपके बिजनेस के लिए एक कस्टम ग्रोथ रोडमैप साझा करते हैं।">
                     We audit your existing marketing setup, identify key growth bottlenecks, and present a custom 30-day strategy roadmap tailored to your goals.
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 6. REDESIGNED Contact Us & Premium Footer Section -->
-    <section id="contact" class="pt-24 pb-12 bg-gradient-to-b from-[#0b1220] via-[#090e1a] to-[#050811] border-t border-gray-800/80 relative overflow-hidden bg-grid">
-        <!-- Background Glowing Orbs -->
-        <div class="absolute bottom-10 left-10 w-96 h-96 bg-[#2563eb]/10 blur-[140px] rounded-full pointer-events-none"></div>
-        <div class="absolute top-10 right-10 w-96 h-96 bg-purple-600/10 blur-[140px] rounded-full pointer-events-none"></div>
+    <!-- 6. Working Contact Us & Premium Footer Section -->
+    <section id="contact" class="pt-16 sm:pt-24 pb-12 bg-gradient-to-b from-[#0b1220] via-[#090e1a] to-[#050811] border-t border-gray-800/80 relative overflow-hidden bg-grid">
+        <div class="absolute bottom-10 left-10 w-72 sm:w-96 h-72 sm:h-96 bg-[#2563eb]/10 blur-[100px] sm:blur-[140px] rounded-full pointer-events-none"></div>
+        <div class="absolute top-10 right-10 w-72 sm:w-96 h-72 sm:h-96 bg-purple-600/10 blur-[100px] sm:blur-[140px] rounded-full pointer-events-none"></div>
 
-        <div class="max-w-7xl mx-auto px-6 relative z-10">
-            <!-- Section Header -->
-            <div class="text-center mb-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+            <div class="text-center mb-12 sm:mb-16">
                 <span class="text-[#2563eb] font-semibold text-xs uppercase tracking-widest bg-blue-950/60 border border-blue-800/50 px-3 py-1 rounded-full" data-en="Get In Touch" data-hi="संपर्क करें">Get In Touch</span>
-                <h2 class="text-3xl md:text-5xl font-extrabold text-white mt-4" data-en="Ready To Scale Your Business?" data-hi="क्या आप अपने बिजनेस को स्केल करने के लिए तैयार हैं?">Ready To Scale Your Business?</h2>
-                <p class="mt-3 text-gray-400 text-sm md:text-base max-w-xl mx-auto" data-en="Fill in your details or reach out to schedule a 1-on-1 strategy session with our growth experts." data-hi="अपनी जानकारी दर्ज करें या हमारे विशेषज्ञों से 1-on-1 परामर्श के लिए संपर्क करें।">Fill in your details or reach out to schedule a 1-on-1 strategy session with our growth experts.</p>
+                <h2 class="text-2xl sm:text-3xl md:text-5xl font-extrabold text-white mt-4" data-en="Ready To Scale Your Business?" data-hi="क्या आप अपने बिजनेस को स्केल करने के लिए तैयार हैं?">Ready To Scale Your Business?</h2>
+                <p class="mt-3 text-gray-400 text-xs sm:text-sm md:text-base max-w-xl mx-auto px-2" data-en="Fill in your details or reach out to schedule a 1-on-1 strategy session with our growth experts." data-hi="अपनी जानकारी दर्ज करें या हमारे विशेषज्ञों से 1-on-1 परामर्श के लिए संपर्क करें।">Fill in your details or reach out to schedule a 1-on-1 strategy session with our growth experts.</p>
             </div>
 
-            <div class="grid lg:grid-cols-12 gap-10 items-start mb-20">
-                
-                <!-- Left Column: Modern Lead Form (7 Cols) -->
+            <div class="grid lg:grid-cols-12 gap-8 sm:gap-10 items-start mb-16 sm:mb-20">
                 <div class="lg:col-span-7">
-                    <form id="leadForm" class="glass-card p-8 md:p-10 rounded-3xl shadow-2xl border border-gray-800/80">
-                        <h3 class="text-xl font-bold text-white mb-6 border-b border-gray-800 pb-4" data-en="Book Your Strategy Session" data-hi="अपनी स्ट्रेटेजी सेशन बुक करें">Book Your Strategy Session</h3>
+                    <form action="https://api.web3forms.com/submit" method="POST" id="leadForm" class="glass-card p-6 sm:p-8 md:p-10 rounded-3xl shadow-2xl border border-gray-800/80">
+                        <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                        <input type="hidden" name="subject" value="New Lead from ARYNEXA Website">
+
+                        <h3 class="text-lg sm:text-xl font-bold text-white mb-6 border-b border-gray-800 pb-4" data-en="Book Your Strategy Session" data-hi="अपनी स्ट्रेटेजी सेशन बुक करें">Book Your Strategy Session</h3>
                         
-                        <div class="grid md:grid-cols-2 gap-5 mb-5">
+                        <div class="grid md:grid-cols-2 gap-4 sm:gap-5 mb-5">
                             <div>
                                 <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2" data-en="Full Name" data-hi="पूरा नाम">Full Name</label>
-                                <input type="text" required placeholder="Rahul Sharma" data-placeholder-en="Rahul Sharma" data-placeholder-hi="राहुल शर्मा" class="w-full px-4 py-3.5 rounded-xl bg-[#090e1a] border border-gray-700/80 text-white placeholder-gray-500 focus:outline-none focus:border-[#2563eb] transition text-sm">
+                                <input type="text" name="name" required placeholder="Rahul Sharma" data-placeholder-en="Rahul Sharma" data-placeholder-hi="राहुल शर्मा" class="w-full px-4 py-3 rounded-xl bg-[#090e1a] border border-gray-700/80 text-white placeholder-gray-500 focus:outline-none focus:border-[#2563eb] transition text-sm">
                             </div>
                             <div>
                                 <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2" data-en="Phone / WhatsApp" data-hi="फ़ोन / व्हाट्सएप">Phone / WhatsApp</label>
-                                <input type="tel" required placeholder="+91 98765 43210" data-placeholder-en="+91 98765 43210" data-placeholder-hi="+91 98765 43210" class="w-full px-4 py-3.5 rounded-xl bg-[#090e1a] border border-gray-700/80 text-white placeholder-gray-500 focus:outline-none focus:border-[#2563eb] transition text-sm">
+                                <input type="tel" name="phone" required placeholder="+91 98765 43210" data-placeholder-en="+91 98765 43210" data-placeholder-hi="+91 98765 43210" class="w-full px-4 py-3 rounded-xl bg-[#090e1a] border border-gray-700/80 text-white placeholder-gray-500 focus:outline-none focus:border-[#2563eb] transition text-sm">
                             </div>
                         </div>
 
                         <div class="mb-6">
                             <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2" data-en="Business Type" data-hi="बिजनेस का प्रकार">Business Type</label>
-                            <input type="text" required placeholder="E-commerce, B2B, Coaching, Real Estate etc." data-placeholder-en="E-commerce, B2B, Coaching, Real Estate etc." data-placeholder-hi="ई-कॉमर्स, रियल एस्टेट, कोचिंग आदि" class="w-full px-4 py-3.5 rounded-xl bg-[#090e1a] border border-gray-700/80 text-white placeholder-gray-500 focus:outline-none focus:border-[#2563eb] transition text-sm">
+                            <input type="text" name="business_type" required placeholder="E-commerce, B2B, Coaching, Real Estate etc." data-placeholder-en="E-commerce, B2B, Coaching, Real Estate etc." data-placeholder-hi="ई-कॉमर्स, रियल एस्टेट, कोचिंग आदि" class="w-full px-4 py-3 rounded-xl bg-[#090e1a] border border-gray-700/80 text-white placeholder-gray-500 focus:outline-none focus:border-[#2563eb] transition text-sm">
                         </div>
 
-                        <button type="submit" class="w-full bg-[#2563eb] hover:bg-blue-600 text-white font-semibold py-4 rounded-xl transition glow-effect flex justify-center items-center gap-3 cursor-pointer text-base">
+                        <button type="submit" class="w-full bg-[#2563eb] hover:bg-blue-600 text-white font-semibold py-3.5 sm:py-4 rounded-xl transition glow-effect flex justify-center items-center gap-3 cursor-pointer text-sm sm:text-base">
                             <span data-en="Book Free Strategy Call" data-hi="मुफ्त परामर्श कॉल बुक करें">Book Free Strategy Call</span>
                             <i class="fa-solid fa-paper-plane text-xs"></i>
                         </button>
-                        
-                        <!-- Success Alert -->
-                        <div id="formSuccess" class="hidden mt-5 p-4 rounded-xl bg-emerald-950/80 border border-emerald-600/80 text-emerald-300 text-sm text-center">
-                            <i class="fa-solid fa-circle-check mr-2"></i>
-                            <span data-en="Thank you! Our growth expert will call you within 24 hours." data-hi="धन्यवाद! हमारी टीम 24 घंटे के भीतर आपसे संपर्क करेगी।">Thank you! Our growth expert will call you within 24 hours.</span>
-                        </div>
                     </form>
                 </div>
 
-                <!-- Right Column: Interactive Cards (5 Cols) -->
-                <div class="lg:col-span-5 space-y-5">
-                    
-                    <!-- Call / WhatsApp Card -->
-                    <a href="tel:+919876543210" class="glass-card p-6 rounded-2xl flex items-center space-x-5 hover:scale-[1.02] transition duration-300 group block">
-                        <div class="w-12 h-12 bg-[#2563eb]/20 text-[#2563eb] group-hover:bg-[#2563eb] group-hover:text-white rounded-xl flex items-center justify-center text-xl shrink-0 transition">
+                <div class="lg:col-span-5 space-y-4 sm:space-y-5">
+                    <a href="tel:+919876543210" class="glass-card p-5 sm:p-6 rounded-2xl flex items-center space-x-4 sm:space-x-5 hover:scale-[1.02] transition duration-300 group block">
+                        <div class="w-10 sm:w-12 h-10 sm:h-12 bg-[#2563eb]/20 text-[#2563eb] group-hover:bg-[#2563eb] group-hover:text-white rounded-xl flex items-center justify-center text-lg sm:text-xl shrink-0 transition">
                             <i class="fa-solid fa-phone"></i>
                         </div>
                         <div>
-                            <h4 class="text-white font-semibold text-base" data-en="Call / WhatsApp Direct" data-hi="डायरेक्ट कॉल या व्हाट्सएप करें">Call / WhatsApp Direct</h4>
-                            <p class="text-gray-400 text-xs mt-1">+91 98765 43210</p>
+                            <h4 class="text-white font-semibold text-sm sm:text-base" data-en="Call / WhatsApp Direct" data-hi="डायरेक्ट कॉल या व्हाट्सएप करें">Call / WhatsApp Direct</h4>
+                            <p class="text-gray-400 text-xs mt-0.5 sm:mt-1">+91 98765 43210</p>
                         </div>
                     </a>
 
-                    <!-- Email Card -->
-                    <a href="mailto:contact@arynexa.com" class="glass-card p-6 rounded-2xl flex items-center space-x-5 hover:scale-[1.02] transition duration-300 group block">
-                        <div class="w-12 h-12 bg-[#2563eb]/20 text-[#2563eb] group-hover:bg-[#2563eb] group-hover:text-white rounded-xl flex items-center justify-center text-xl shrink-0 transition">
+                    <a href="mailto:contact@arynexa.com" class="glass-card p-5 sm:p-6 rounded-2xl flex items-center space-x-4 sm:space-x-5 hover:scale-[1.02] transition duration-300 group block">
+                        <div class="w-10 sm:w-12 h-10 sm:h-12 bg-[#2563eb]/20 text-[#2563eb] group-hover:bg-[#2563eb] group-hover:text-white rounded-xl flex items-center justify-center text-lg sm:text-xl shrink-0 transition">
                             <i class="fa-solid fa-envelope"></i>
                         </div>
                         <div>
-                            <h4 class="text-white font-semibold text-base" data-en="Send Us An Email" data-hi="ईमेल भेजें">Send Us An Email</h4>
-                            <p class="text-gray-400 text-xs mt-1">contact@arynexa.com</p>
+                            <h4 class="text-white font-semibold text-sm sm:text-base" data-en="Send Us An Email" data-hi="ईमेल भेजें">Send Us An Email</h4>
+                            <p class="text-gray-400 text-xs mt-0.5 sm:mt-1">contact@arynexa.com</p>
                         </div>
                     </a>
 
-                    <!-- Office Location Card -->
-                    <div class="glass-card p-6 rounded-2xl flex items-start space-x-5">
-                        <div class="w-12 h-12 bg-[#2563eb]/20 text-[#2563eb] rounded-xl flex items-center justify-center text-xl shrink-0 mt-1">
+                    <div class="glass-card p-5 sm:p-6 rounded-2xl flex items-start space-x-4 sm:space-x-5">
+                        <div class="w-10 sm:w-12 h-10 sm:h-12 bg-[#2563eb]/20 text-[#2563eb] rounded-xl flex items-center justify-center text-lg sm:text-xl shrink-0 mt-1">
                             <i class="fa-solid fa-location-dot"></i>
                         </div>
                         <div>
-                            <h4 class="text-white font-semibold text-base" data-en="Headquarters" data-hi="मुख्य कार्यालय">Headquarters</h4>
-                            <p class="text-gray-400 text-xs mt-1 leading-relaxed" data-en="Tower B, 7th Floor, Cyber City, Tech Park, Gurugram, HR - 122002, India" data-hi="टावर बी, 7वीं मंजिल, साइबर सिटी, टेक पार्क, गुरुग्राम, हरियाणा - 122002, भारत">
+                            <h4 class="text-white font-semibold text-sm sm:text-base" data-en="Headquarters" data-hi="मुख्य कार्यालय">Headquarters</h4>
+                            <p class="text-gray-400 text-xs mt-0.5 sm:mt-1 leading-relaxed" data-en="Tower B, 7th Floor, Cyber City, Tech Park, Gurugram, HR - 122002, India" data-hi="टावर बी, 7वीं मंजिल, साइबर सिटी, टेक पार्क, गुरुग्राम, हरियाणा - 122002, भारत">
                                 Tower B, 7th Floor, Cyber City, Tech Park, Gurugram, HR - 122002, India
                             </p>
                         </div>
                     </div>
-
                 </div>
-
             </div>
 
-            <!-- Footer Divider & Links Grid -->
-            <div class="border-t border-gray-800/80 pt-12 pb-8 grid md:grid-cols-12 gap-8 text-sm">
-                
-                <!-- Brand Info (5 Cols) -->
+            <div class="border-t border-gray-800/80 pt-10 sm:pt-12 pb-8 grid md:grid-cols-12 gap-8 text-sm">
                 <div class="md:col-span-5 space-y-4">
                     <a href="#" class="text-2xl font-extrabold tracking-wider text-white inline-block">
                         ARYNEXA<span class="text-[#2563eb]">.</span>
@@ -422,7 +477,6 @@
                         Scaling modern businesses with AI technology, high-converting growth funnels, and data-backed digital marketing strategies.
                     </p>
                     
-                    <!-- Social Links -->
                     <div class="flex space-x-3 pt-2">
                         <a href="#" class="w-9 h-9 bg-gray-900 border border-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:border-[#2563eb] hover:bg-[#2563eb] transition text-sm">
                             <i class="fa-brands fa-linkedin-in"></i>
@@ -439,18 +493,17 @@
                     </div>
                 </div>
 
-                <!-- Navigation Links (3 Cols) -->
                 <div class="md:col-span-3 space-y-3">
                     <h4 class="text-white font-semibold text-sm" data-en="Quick Links" data-hi="त्वरित लिंक">Quick Links</h4>
                     <ul class="space-y-2 text-xs text-gray-400">
                         <li><a href="#about" class="hover:text-[#2563eb] transition" data-en="About Us" data-hi="हमारे बारे में">About Us</a></li>
                         <li><a href="#services" class="hover:text-[#2563eb] transition" data-en="Services" data-hi="सेवाएं">Services</a></li>
+                        <li><a href="#card" class="hover:text-[#2563eb] transition" data-en="Digital Card" data-hi="डिजिटल कार्ड">Digital Card</a></li>
                         <li><a href="#faq" class="hover:text-[#2563eb] transition" data-en="FAQ" data-hi="सवाल-जवाब">FAQ</a></li>
                         <li><a href="#contact" class="hover:text-[#2563eb] transition" data-en="Contact Us" data-hi="संपर्क करें">Contact Us</a></li>
                     </ul>
                 </div>
 
-                <!-- Services List (4 Cols) -->
                 <div class="md:col-span-4 space-y-3">
                     <h4 class="text-white font-semibold text-sm" data-en="Services" data-hi="हमारी सेवाएं">Services</h4>
                     <ul class="space-y-2 text-xs text-gray-400">
@@ -460,10 +513,8 @@
                         <li data-en="Brand Growth Strategy" data-hi="ब्रांड ग्रोथ रणनीति">Brand Growth Strategy</li>
                     </ul>
                 </div>
-
             </div>
 
-            <!-- Bottom Copyright Line -->
             <div class="border-t border-gray-900 pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-500 gap-4">
                 <p>© 2026 ARYNEXA. <span data-en="All rights reserved." data-hi="सर्वाधिकार सुरक्षित।">All rights reserved.</span></p>
                 <div class="flex space-x-6">
@@ -471,24 +522,21 @@
                     <a href="#" class="hover:text-gray-400 transition" data-en="Terms of Service" data-hi="सेवा की शर्तें">Terms of Service</a>
                 </div>
             </div>
-
         </div>
     </section>
 
-    <!-- Fixed JavaScript -->
+    <!-- JavaScript Handlers -->
     <script>
         let currentLang = 'en';
 
         function switchLanguage() {
             currentLang = (currentLang === 'en') ? 'hi' : 'en';
 
-            // Button label change
             const langLabel = document.getElementById('langLabel');
             if (langLabel) {
                 langLabel.textContent = (currentLang === 'en') ? 'हिंदी' : 'English';
             }
 
-            // Change Text Elements
             const translatableElements = document.querySelectorAll('[data-en][data-hi]');
             translatableElements.forEach(el => {
                 const newText = el.getAttribute(data-${currentLang});
@@ -497,7 +545,6 @@
                 }
             });
 
-            // Change Input Placeholders
             const inputs = document.querySelectorAll('[data-placeholder-en][data-placeholder-hi]');
             inputs.forEach(input => {
                 const newPlaceholder = input.getAttribute(data-placeholder-${currentLang});
@@ -505,6 +552,30 @@
                     input.placeholder = newPlaceholder;
                 }
             });
+        }
+
+        // vCard Generator & Downloader
+        function downloadVCard() {
+            const vcardData = 
+`BEGIN:VCARD
+VERSION:3.0
+N:ARYNEXA;;;
+FN:ARYNEXA Digital Agency
+ORG:ARYNEXA Growth Marketing
+TEL;TYPE=CELL,VOICE:+919876543210
+EMAIL;TYPE=WORK,INTERNET:contact@arynexa.com
+TITLE:Digital Marketing & AI Growth Agency
+ADR;TYPE=WORK:;;Tower B, 7th Floor, Cyber City;Gurugram;Haryana;122002;India
+URL:https://arynexa.com
+END:VCARD`;
+
+            const blob = new Blob([vcardData], { type: 'text/vcard;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.setAttribute('download', 'ARYNEXA_Contact.vcf');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -545,17 +616,15 @@
                 });
             });
 
-            // 4. Form Submit Handler
-            const leadForm = document.getElementById('leadForm');
-            if (leadForm) {
-                leadForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    const alertBox = document.getElementById('formSuccess');
-                    if (alertBox) alertBox.classList.remove('hidden');
-                    leadForm.reset();
-                    setTimeout(() => {
-                        if (alertBox) alertBox.classList.add('hidden');
-                    }, 5000);
+            // 4. Generate QR Code for Digital Card
+            if (typeof QRCode !== 'undefined') {
+                new QRCode(document.getElementById("qrcode"), {
+                    text: window.location.href,
+                    width: 80,
+                    height: 80,
+                    colorDark : "#0b1220",
+                    colorLight : "#ffffff",
+                    correctLevel : QRCode.CorrectLevel.H
                 });
             }
         });
