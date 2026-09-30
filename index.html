@@ -16,9 +16,6 @@
     <!-- FontAwesome Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
-    <!-- QR Code Generator Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
     <!-- Custom Tailwind Configuration -->
     <script>
         tailwind.config = {
@@ -72,7 +69,7 @@
 </head>
 <body class="antialiased selection:bg-blue-600 selection:text-white">
 
-    <!-- 1. Header / Navbar -->
+    <!-- Header / Navbar -->
     <header class="fixed top-0 left-0 w-full bg-[#0b1220]/90 backdrop-blur-md border-b border-gray-800/80 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
             <a href="#" class="flex items-center space-x-3 group">
@@ -84,13 +81,12 @@
             <nav class="hidden md:flex space-x-8 text-gray-300 font-medium text-sm tracking-wide">
                 <a href="#about" class="hover:text-[#2563eb] transition" data-en="About Us" data-hi="हमारे बारे में">About Us</a>
                 <a href="#services" class="hover:text-[#2563eb] transition" data-en="Services" data-hi="सेवाएं">Services</a>
-                <a href="#card" class="hover:text-[#2563eb] transition" data-en="Digital Card" data-hi="डिजिटल कार्ड">Digital Card</a>
                 <a href="#faq" class="hover:text-[#2563eb] transition" data-en="FAQ" data-hi="सवाल-जवाब">FAQ</a>
                 <a href="#contact" class="hover:text-[#2563eb] transition" data-en="Contact Us" data-hi="संपर्क करें">Contact Us</a>
             </nav>
 
             <div class="flex items-center space-x-3 sm:space-x-4">
-                <button id="langToggle" type="button" class="flex items-center space-x-2 bg-gray-900 border border-gray-700 hover:border-[#2563eb] text-gray-200 px-3 py-1.5 rounded-full text-xs font-semibold transition cursor-pointer select-none">
+                <button id="langToggle" type="button" onclick="switchLanguage()" class="flex items-center space-x-2 bg-gray-900 border border-gray-700 hover:border-[#2563eb] text-gray-200 px-3 py-1.5 rounded-full text-xs font-semibold transition cursor-pointer select-none">
                     <i class="fa-solid fa-globe text-[#2563eb]"></i>
                     <span id="langLabel">हिंदी</span>
                 </button>
@@ -108,14 +104,13 @@
         <div id="mobileMenu" class="hidden md:hidden bg-[#0b1220] border-b border-gray-800 px-6 py-4 space-y-3">
             <a href="#about" class="mobile-link block text-gray-300 hover:text-[#2563eb] py-1 text-sm font-medium" data-en="About Us" data-hi="हमारे बारे में">About Us</a>
             <a href="#services" class="mobile-link block text-gray-300 hover:text-[#2563eb] py-1 text-sm font-medium" data-en="Services" data-hi="सेवाएं">Services</a>
-            <a href="#card" class="mobile-link block text-gray-300 hover:text-[#2563eb] py-1 text-sm font-medium" data-en="Digital Card" data-hi="डिजिटल कार्ड">Digital Card</a>
             <a href="#faq" class="mobile-link block text-gray-300 hover:text-[#2563eb] py-1 text-sm font-medium" data-en="FAQ" data-hi="सवाल-जवाब">FAQ</a>
             <a href="#contact" class="mobile-link block text-gray-300 hover:text-[#2563eb] py-1 text-sm font-medium" data-en="Contact Us" data-hi="संपर्क करें">Contact Us</a>
             <a href="#contact" class="mobile-link block text-center bg-[#2563eb] text-white py-2.5 rounded-xl font-medium text-sm mt-2" data-en="Get Started" data-hi="शुरू करें">Get Started</a>
         </div>
     </header>
 
-    <!-- 2. Hero Section -->
+    <!-- Hero Section -->
     <section class="pt-28 pb-16 sm:pt-36 sm:pb-20 md:pt-48 md:pb-32 max-w-7xl mx-auto px-4 sm:px-6 text-center relative overflow-hidden">
         <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-[#2563eb]/20 blur-[100px] sm:blur-[120px] rounded-full -z-10"></div>
 
@@ -137,8 +132,8 @@
             <a href="#contact" class="bg-[#2563eb] text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-semibold text-sm sm:text-base hover:bg-blue-700 transition glow-effect flex items-center justify-center gap-2">
                 <span data-en="Book A Free Growth Call" data-hi="फ्री स्ट्रैटेजी कॉल बुक करें">Book A Free Growth Call</span> <i class="fa-solid fa-arrow-right text-xs sm:text-sm"></i>
             </a>
-            <a href="#card" class="bg-gray-900/80 border border-gray-800 text-gray-300 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-semibold text-sm sm:text-base hover:border-gray-700 transition" data-en="Digital Card" data-hi="डिजिटल कार्ड">
-                Digital Card
+            <a href="#services" class="bg-gray-900/80 border border-gray-800 text-gray-300 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-semibold text-sm sm:text-base hover:border-gray-700 transition" data-en="Our Services" data-hi="हमारी सेवाएं">
+                Our Services
             </a>
         </div>
     </section>
@@ -165,7 +160,7 @@
         </div>
     </section>
 
-    <!-- 3. About Us Section -->
+    <!-- About Us Section -->
     <section id="about" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6">
         <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div>
@@ -225,110 +220,57 @@
         </div>
     </section>
 
-    <!-- 4. Digital Business Card -->
-    <section id="card" class="py-16 sm:py-24 border-t border-gray-800/80 bg-gradient-to-b from-gray-900/40 to-[#0b1220]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6">
-            <div class="text-center mb-12 sm:mb-16">
-                <span class="text-[#2563eb] font-semibold text-xs uppercase tracking-widest" data-en="Quick Connect" data-hi="तुरंत जुड़ें">Quick Connect</span>
-                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white mt-2" data-en="Digital Business Card" data-hi="डिजिटल बिजनेस कार्ड">Digital Business Card</h2>
-                <p class="text-gray-400 mt-2 sm:mt-3 text-xs sm:text-sm max-w-lg mx-auto" data-en="Save our contact details directly to your phone or share with your team." data-hi="हमारी संपर्क जानकारी सीधे अपने फ़ोन में सेव करें या अपनी टीम के साथ शेयर करें।">Save our contact details directly to your phone or share with your team.</p>
-            </div>
-
-            <div class="max-w-md mx-auto glass-card p-6 sm:p-8 rounded-3xl border border-gray-700/60 shadow-2xl relative overflow-hidden">
-                <div class="absolute -top-12 -right-12 w-32 h-32 bg-[#2563eb]/30 rounded-full blur-2xl"></div>
-
-                <div class="flex items-center space-x-4 mb-6 relative z-10">
-                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#2563eb] to-purple-600 flex items-center justify-center text-white text-2xl font-bold shadow-lg">
-                        A
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-white">ARYNEXA</h3>
-                        <p class="text-xs text-[#2563eb] font-semibold uppercase tracking-wider">Digital Agency & Growth Partner</p>
-                        <p class="text-xs text-gray-400 mt-0.5"><i class="fa-solid fa-location-dot text-xs mr-1"></i>Gurugram, HR, India</p>
-                    </div>
-                </div>
-
-                <div class="space-y-3 mb-6 relative z-10 text-xs sm:text-sm">
-                    <a href="tel:+919876543210" class="flex items-center justify-between p-3 rounded-xl bg-[#090e1a]/80 hover:bg-[#2563eb]/10 border border-gray-800 hover:border-[#2563eb]/40 transition group">
-                        <div class="flex items-center space-x-3">
-                            <i class="fa-solid fa-phone text-[#2563eb]"></i>
-                            <span class="text-gray-200">+91 98765 43210</span>
-                        </div>
-                        <i class="fa-solid fa-arrow-up-right-from-square text-gray-500 group-hover:text-[#2563eb] text-xs"></i>
-                    </a>
-
-                    <a href="https://wa.me/919876543210" target="_blank" class="flex items-center justify-between p-3 rounded-xl bg-[#090e1a]/80 hover:bg-[#2563eb]/10 border border-gray-800 hover:border-[#2563eb]/40 transition group">
-                        <div class="flex items-center space-x-3">
-                            <i class="fa-brands fa-whatsapp text-emerald-500"></i>
-                            <span class="text-gray-200">WhatsApp Chat</span>
-                        </div>
-                        <i class="fa-solid fa-arrow-up-right-from-square text-gray-500 group-hover:text-[#2563eb] text-xs"></i>
-                    </a>
-
-                    <a href="mailto:contact@arynexa.com" class="flex items-center justify-between p-3 rounded-xl bg-[#090e1a]/80 hover:bg-[#2563eb]/10 border border-gray-800 hover:border-[#2563eb]/40 transition group">
-                        <div class="flex items-center space-x-3">
-                            <i class="fa-solid fa-envelope text-purple-400"></i>
-                            <span class="text-gray-200">contact@arynexa.com</span>
-                        </div>
-                        <i class="fa-solid fa-arrow-up-right-from-square text-gray-500 group-hover:text-[#2563eb] text-xs"></i>
-                    </a>
-                </div>
-
-                <div class="pt-4 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4 relative z-10">
-                    <div class="bg-white p-2 rounded-xl shadow-md shrink-0">
-                        <div id="qrcode"></div>
-                    </div>
-                    <div class="w-full sm:w-auto flex-1">
-                        <button onclick="downloadVCard()" type="button" class="w-full bg-[#2563eb] hover:bg-blue-600 text-white text-xs sm:text-sm font-semibold py-3 px-4 rounded-xl transition glow-effect flex justify-center items-center gap-2 cursor-pointer">
-                            <i class="fa-solid fa-address-card"></i>
-                            <span data-en="Save Contact (.vcf)" data-hi="कॉन्टेक्ट सेव करें (.vcf)">Save Contact (.vcf)</span>
-                        </button>
-                        <p class="text-[10px] text-gray-500 text-center mt-2" data-en="Scan QR or click to save directly to Phonebook" data-hi="क्यूआर स्कैन करें या सीधे फोनबुक में सेव करने के लिए क्लिक करें">Scan QR or click to save directly to Phonebook</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. Services Section -->
+    <!-- Services Section (Digital Card & NFC Services Added) -->
     <section id="services" class="py-16 sm:py-24 border-t border-gray-800/80 bg-gray-900/20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <div class="text-center mb-12 sm:mb-16">
                 <span class="text-[#2563eb] font-semibold text-xs uppercase tracking-widest" data-en="Our Expertise" data-hi="हमारी विशेषज्ञता">Our Expertise</span>
                 <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white mt-2" data-en="Core Services We Provide" data-hi="हमारी मुख्य सेवाएं">Core Services We Provide</h2>
-                <p class="text-gray-400 mt-2 sm:mt-3 text-xs sm:text-sm max-w-lg mx-auto" data-en="Data-driven strategies designed to scale your revenue exponentially." data-hi="आपके बिजनेस के रेवेन्यू को बढ़ाने के लिए तैयार की गई विशेष रणनीतियाँ।">Data-driven strategies designed to scale your revenue exponentially.</p>
+                <p class="text-gray-400 mt-2 sm:mt-3 text-xs sm:text-sm max-w-lg mx-auto" data-en="Data-driven strategies and modern tech designed to scale your brand exponentially." data-hi="आपके बिजनेस और ब्रांड को तेजी से बढ़ाने के लिए डेटा-संचालित रणनीतियां।">Data-driven strategies and modern tech designed to scale your brand exponentially.</p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-6 sm:gap-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+                <!-- Service 1 -->
                 <div class="glass-card p-6 sm:p-8 rounded-2xl transition duration-300 group">
                     <div class="w-12 h-12 bg-[#2563eb]/10 text-[#2563eb] rounded-xl flex items-center justify-center text-xl mb-6 group-hover:bg-[#2563eb] group-hover:text-white transition">
                         <i class="fa-solid fa-bullseye"></i>
                     </div>
-                    <h3 class="text-lg sm:text-xl font-bold text-white mb-3" data-en="Performance Marketing" data-hi="परफॉरमेंस मार्केटिंग">Performance Marketing</h3>
+                    <h3 class="text-lg font-bold text-white mb-3" data-en="Performance Marketing" data-hi="परफॉरमेंस मार्केटिंग">Performance Marketing</h3>
                     <p class="text-gray-400 text-xs sm:text-sm leading-relaxed" data-en="Scale lead generation and revenue through targeted Meta & Google ad campaigns." data-hi="Meta और Google विज्ञापनों द्वारा सही ग्राहकों तक पहुँचें और बिक्री बढ़ाएं।">Scale lead generation and revenue through targeted Meta & Google ad campaigns.</p>
                 </div>
 
+                <!-- Service 2 -->
                 <div class="glass-card p-6 sm:p-8 rounded-2xl transition duration-300 group">
                     <div class="w-12 h-12 bg-[#2563eb]/10 text-[#2563eb] rounded-xl flex items-center justify-center text-xl mb-6 group-hover:bg-[#2563eb] group-hover:text-white transition">
                         <i class="fa-solid fa-robot"></i>
                     </div>
-                    <h3 class="text-lg sm:text-xl font-bold text-white mb-3" data-en="AI Marketing Automation" data-hi="AI मार्केटिंग ऑटोमेशन">AI Marketing Automation</h3>
+                    <h3 class="text-lg font-bold text-white mb-3" data-en="AI Marketing Automation" data-hi="AI मार्केटिंग ऑटोमेशन">AI Marketing Automation</h3>
                     <p class="text-gray-400 text-xs sm:text-sm leading-relaxed" data-en="Automate sales funnels, CRM workflows, and AI chatbots for higher conversions." data-hi="AI वर्कफ़्लो और चैटबॉट्स द्वारा ग्राहक संचार और सेल्स फनल को ऑटोमेट करें।">Automate sales funnels, CRM workflows, and AI chatbots for higher conversions.</p>
                 </div>
 
+                <!-- Service 3 (NEW: Digital Card & NFC Cards) -->
+                <div class="glass-card p-6 sm:p-8 rounded-2xl transition duration-300 group relative border border-blue-500/30">
+                    <div class="absolute -top-3 right-4 bg-[#2563eb] text-white text-[9px] uppercase tracking-widest font-bold px-2.5 py-0.5 rounded-full">New</div>
+                    <div class="w-12 h-12 bg-[#2563eb]/10 text-[#2563eb] rounded-xl flex items-center justify-center text-xl mb-6 group-hover:bg-[#2563eb] group-hover:text-white transition">
+                        <i class="fa-solid fa-[#2563eb] fa-address-card"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-3" data-en="Digital & NFC Cards" data-hi="डिजिटल व NFC स्मार्ट कार्ड">Digital & NFC Cards</h3>
+                    <p class="text-gray-400 text-xs sm:text-sm leading-relaxed" data-en="Custom contact-less NFC business cards and interactive digital landing cards for seamless networking." data-hi="स्मार्ट संपर्क रहित NFC कार्ड और इंटरैक्टिव डिजिटल प्रोफाइल जो आपके नेटवर्किंग को आसान बनाते हैं।">Custom contact-less NFC business cards and interactive digital landing cards for seamless networking.</p>
+                </div>
+
+                <!-- Service 4 -->
                 <div class="glass-card p-6 sm:p-8 rounded-2xl transition duration-300 group">
                     <div class="w-12 h-12 bg-[#2563eb]/10 text-[#2563eb] rounded-xl flex items-center justify-center text-xl mb-6 group-hover:bg-[#2563eb] group-hover:text-white transition">
                         <i class="fa-solid fa-chart-line"></i>
                     </div>
-                    <h3 class="text-lg sm:text-xl font-bold text-white mb-3" data-en="SEO & Brand Growth" data-hi="SEO और ब्रांड ग्रोथ">SEO & Brand Growth</h3>
+                    <h3 class="text-lg font-bold text-white mb-3" data-en="SEO & Brand Growth" data-hi="SEO और ब्रांड ग्रोथ">SEO & Brand Growth</h3>
                     <p class="text-gray-400 text-xs sm:text-sm leading-relaxed" data-en="Rank higher on search engines to drive long-term, high-intent organic traffic." data-hi="Google सर्च में ऊपर आएं और बिना विज्ञापन खर्च किए ऑर्गेनिक ग्राहक पाएं।">Rank higher on search engines to drive long-term, high-intent organic traffic.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 6. FAQ Section -->
+    <!-- FAQ Section -->
     <section id="faq" class="py-16 sm:py-24 max-w-4xl mx-auto px-4 sm:px-6">
         <div class="text-center mb-12 sm:mb-16">
             <span class="text-[#2563eb] font-semibold text-xs uppercase tracking-widest" data-en="Got Questions?" data-hi="कोई सवाल है?">Got Questions?</span>
@@ -349,6 +291,16 @@
 
             <div class="glass-card rounded-xl overflow-hidden">
                 <button type="button" class="acc-btn w-full text-left p-5 sm:p-6 flex justify-between items-center focus:outline-none">
+                    <span class="font-semibold text-white text-sm sm:text-base md:text-lg pr-2" data-en="What are NFC & Digital Business Cards?" data-hi="NFC और डिजिटल बिजनेस कार्ड क्या हैं?">What are NFC & Digital Business Cards?</span>
+                    <i class="fa-solid fa-chevron-down text-gray-400 text-xs sm:text-sm transition-transform duration-300 pointer-events-none shrink-0"></i>
+                </button>
+                <div class="acc-body hidden px-5 sm:px-6 pb-5 sm:pb-6 text-gray-400 text-xs sm:text-sm leading-relaxed border-t border-gray-800/50 pt-4" data-en="NFC Smart Cards allow you to share your website, contact info, social links, and business details instantly by tapping the card on any smartphone without an app." data-hi="NFC स्मार्ट कार्ड की मदद से आप अपने कार्ड को किसी भी स्मार्टफोन पर टैप करके अपनी वेबसाइट, कांटेक्ट और बिजनेस डिटेल्स तुरंत शेयर कर सकते हैं।">
+                    NFC Smart Cards allow you to share your website, contact info, social links, and business details instantly by tapping the card on any smartphone without an app.
+                </div>
+            </div>
+
+            <div class="glass-card rounded-xl overflow-hidden">
+                <button type="button" class="acc-btn w-full text-left p-5 sm:p-6 flex justify-between items-center focus:outline-none">
                     <span class="font-semibold text-white text-sm sm:text-base md:text-lg pr-2" data-en="How fast can we expect results?" data-hi="परिणाम (Results) दिखने में कितना समय लगता है?">How fast can we expect results?</span>
                     <i class="fa-solid fa-chevron-down text-gray-400 text-xs sm:text-sm transition-transform duration-300 pointer-events-none shrink-0"></i>
                 </button>
@@ -356,30 +308,10 @@
                     Paid advertising campaigns start delivering leads within the first 7–14 days. Sustainable SEO and brand positioning take 60–90 days for optimal traction.
                 </div>
             </div>
-
-            <div class="glass-card rounded-xl overflow-hidden">
-                <button type="button" class="acc-btn w-full text-left p-5 sm:p-6 flex justify-between items-center focus:outline-none">
-                    <span class="font-semibold text-white text-sm sm:text-base md:text-lg pr-2" data-en="Which industries do you specialize in?" data-hi="क्या आप हर प्रकार के बिजनेस के साथ काम करते हैं?">Which industries do you specialize in?</span>
-                    <i class="fa-solid fa-chevron-down text-gray-400 text-xs sm:text-sm transition-transform duration-300 pointer-events-none shrink-0"></i>
-                </button>
-                <div class="acc-body hidden px-5 sm:px-6 pb-5 sm:pb-6 text-gray-400 text-xs sm:text-sm leading-relaxed border-t border-gray-800/50 pt-4" data-en="We specialize in scaling E-commerce brands, B2B services, Real Estate, Healthcare, SaaS, and High-Ticket Coaching businesses." data-hi="हम B2B, ई-कॉमर्स, रियल एस्टेट, स्वास्थ्य सेवा, सॉफ्टवेयर (SaaS) और कोचिंग उद्योगों के साथ काम करके उन्हें स्केल करते हैं।">
-                    We specialize in scaling E-commerce brands, B2B services, Real Estate, Healthcare, SaaS, and High-Ticket Coaching businesses.
-                </div>
-            </div>
-
-            <div class="glass-card rounded-xl overflow-hidden">
-                <button type="button" class="acc-btn w-full text-left p-5 sm:p-6 flex justify-between items-center focus:outline-none">
-                    <span class="font-semibold text-white text-sm sm:text-base md:text-lg pr-2" data-en="What happens during the Free Consultation Call?" data-hi="फ्री कंसल्टेशन कॉल में क्या होता है?">What happens during the Free Consultation Call?</span>
-                    <i class="fa-solid fa-chevron-down text-gray-400 text-xs sm:text-sm transition-transform duration-300 pointer-events-none shrink-0"></i>
-                </button>
-                <div class="acc-body hidden px-5 sm:px-6 pb-5 sm:pb-6 text-gray-400 text-xs sm:text-sm leading-relaxed border-t border-gray-800/50 pt-4" data-en="We audit your existing marketing setup, identify key growth bottlenecks, and present a custom 30-day strategy roadmap tailored to your goals." data-hi="हम आपके वर्तमान व्यवसाय का विश्लेषण करते हैं और 30 मिनट की कॉल में आपके बिजनेस के लिए एक कस्टम ग्रोथ रोडमैप साझा करते हैं।">
-                    We audit your existing marketing setup, identify key growth bottlenecks, and present a custom 30-day strategy roadmap tailored to your goals.
-                </div>
-            </div>
         </div>
     </section>
 
-    <!-- 7. Lead Form & Contact Section -->
+    <!-- Lead Form & Contact Section -->
     <section id="contact" class="pt-16 sm:pt-24 pb-12 bg-gradient-to-b from-[#0b1220] via-[#090e1a] to-[#050811] border-t border-gray-800/80 relative overflow-hidden bg-grid">
         <div class="absolute bottom-10 left-10 w-72 sm:w-96 h-72 sm:h-96 bg-[#2563eb]/10 blur-[100px] sm:blur-[140px] rounded-full pointer-events-none"></div>
         <div class="absolute top-10 right-10 w-72 sm:w-96 h-72 sm:h-96 bg-purple-600/10 blur-[100px] sm:blur-[140px] rounded-full pointer-events-none"></div>
@@ -393,8 +325,8 @@
 
             <div class="grid lg:grid-cols-12 gap-8 sm:gap-10 items-start mb-16 sm:mb-20">
                 <div class="lg:col-span-7">
-                    <form id="leadForm" class="glass-card p-6 sm:p-8 md:p-10 rounded-3xl shadow-2xl border border-gray-800/80">
-                        <!-- अपनी Web3Forms API Key यहाँ डालें -->
+                    <form id="leadForm" onsubmit="return handleFormSubmit(event)" class="glass-card p-6 sm:p-8 md:p-10 rounded-3xl shadow-2xl border border-gray-800/80">
+                        <!-- IMPORTANT: Replace YOUR_ACCESS_KEY_HERE with your real Web3Forms key -->
                         <input type="hidden" name="access_key" value="ace9d55c-fa2b-49c5-b7eb-0a6617479817">
                         <input type="hidden" name="subject" value="New Lead from ARYNEXA Website">
 
@@ -476,7 +408,6 @@
                     <ul class="space-y-2 text-xs text-gray-400">
                         <li><a href="#about" class="hover:text-[#2563eb] transition" data-en="About Us" data-hi="हमारे बारे में">About Us</a></li>
                         <li><a href="#services" class="hover:text-[#2563eb] transition" data-en="Services" data-hi="सेवाएं">Services</a></li>
-                        <li><a href="#card" class="hover:text-[#2563eb] transition" data-en="Digital Card" data-hi="डिजिटल कार्ड">Digital Card</a></li>
                         <li><a href="#faq" class="hover:text-[#2563eb] transition" data-en="FAQ" data-hi="सवाल-जवाब">FAQ</a></li>
                         <li><a href="#contact" class="hover:text-[#2563eb] transition" data-en="Contact Us" data-hi="संपर्क करें">Contact Us</a></li>
                     </ul>
@@ -487,8 +418,8 @@
                     <ul class="space-y-2 text-xs text-gray-400">
                         <li data-en="Performance Marketing (Meta & Google Ads)" data-hi="परफॉरमेंस मार्केटिंग">Performance Marketing (Meta & Google Ads)</li>
                         <li data-en="AI Automation & Funnel Optimization" data-hi="AI ऑटोमेशन और फनल">AI Automation & Funnel Optimization</li>
+                        <li data-en="Digital & NFC Business Cards" data-hi="डिजिटल व NFC स्मार्ट कार्ड">Digital & NFC Business Cards</li>
                         <li data-en="Search Engine Optimization (SEO)" data-hi="सर्च इंजन ऑप्टिमाइजेशन (SEO)">Search Engine Optimization (SEO)</li>
-                        <li data-en="Brand Growth Strategy" data-hi="ब्रांड ग्रोथ रणनीति">Brand Growth Strategy</li>
                     </ul>
                 </div>
             </div>
@@ -499,89 +430,121 @@
         </div>
     </section>
 
-    <!-- Corrected JavaScript Handlers -->
+    <!-- Optimized JavaScript Handlers -->
     <script>
-        let currentLang = 'en';
+        window.currentLang = 'en';
 
-        function switchLanguage() {
-            currentLang = (currentLang === 'en') ? 'hi' : 'en';
+        // Global Language Switcher
+        window.switchLanguage = function() {
+            window.currentLang = (window.currentLang === 'en') ? 'hi' : 'en';
 
             const langLabel = document.getElementById('langLabel');
             if (langLabel) {
-                langLabel.textContent = (currentLang === 'en') ? 'हिंदी' : 'English';
+                langLabel.textContent = (window.currentLang === 'en') ? 'हिंदी' : 'English';
             }
 
-            // Update all text elements with data-en and data-hi
             const translatableElements = document.querySelectorAll('[data-en][data-hi]');
-            translatableElements.forEach(el => {
-                const newText = el.getAttribute(data-${currentLang});
+            translatableElements.forEach(function(el) {
+                const newText = el.getAttribute('data-' + window.currentLang);
                 if (newText) {
                     el.textContent = newText;
                 }
             });
 
-            // Update input placeholders
             const inputs = document.querySelectorAll('[data-placeholder-en][data-placeholder-hi]');
-            inputs.forEach(input => {
-                const newPlaceholder = input.getAttribute(data-placeholder-${currentLang});
+            inputs.forEach(function(input) {
+                const newPlaceholder = input.getAttribute('data-placeholder-' + window.currentLang);
                 if (newPlaceholder) {
                     input.placeholder = newPlaceholder;
                 }
             });
-        }
+        };
 
-        // vCard Generator & Downloader
-        function downloadVCard() {
-            const vcardData = 
-`BEGIN:VCARD
-VERSION:3.0
-N:ARYNEXA;;;
-FN:ARYNEXA Digital Agency
-ORG:ARYNEXA Growth Marketing
-TEL;TYPE=CELL,VOICE:+919876543210
-EMAIL;TYPE=WORK,INTERNET:contact@arynexa.com
-TITLE:Digital Marketing & AI Growth Agency
-ADR;TYPE=WORK:;;Tower B, 7th Floor, Cyber City;Gurugram;Haryana;122002;India
-URL:https://arynexa.com
-END:VCARD`;
+        // Global Form Handler
+        window.handleFormSubmit = function(event) {
+            event.preventDefault();
 
-            const blob = new Blob([vcardData], { type: 'text/vcard;charset=utf-8;' });
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.setAttribute('download', 'ARYNEXA_Contact.vcf');
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
+            const form = event.target;
+            const formResult = document.getElementById('formResult');
+            const submitBtn = document.getElementById('submitBtn');
+            const btnText = document.getElementById('btnText');
 
-        document.addEventListener('DOMContentLoaded', () => {
-            // 1. Language Toggle Event
-            const langBtn = document.getElementById('langToggle');
-            if (langBtn) {
-                langBtn.addEventListener('click', switchLanguage);
+            if (formResult) {
+                formResult.classList.remove('hidden', 'text-red-500', 'text-emerald-400');
+                formResult.classList.add('text-blue-400');
+                formResult.innerHTML = (window.currentLang === 'en') ? "Sending..." : "भेजा जा रहा है...";
             }
 
-            // 2. Mobile Menu Toggle
+            if (btnText) btnText.textContent = (window.currentLang === 'en') ? "Sending..." : "भेजा जा रहा है...";
+            if (submitBtn) submitBtn.disabled = true;
+
+            const formData = new FormData(form);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: json
+            })
+            .then(async (response) => {
+                let resJson = await response.json();
+                if (response.status === 200 && resJson.success) {
+                    if (formResult) {
+                        formResult.classList.remove('text-blue-400', 'text-red-500');
+                        formResult.classList.add('text-emerald-400');
+                        formResult.innerHTML = (window.currentLang === 'en') ? "✓ Success! We will contact you shortly." : "✓ सफलता! हम जल्द आपसे संपर्क करेंगे।";
+                    }
+                    form.reset();
+                } else {
+                    if (formResult) {
+                        formResult.classList.remove('text-blue-400', 'text-emerald-400');
+                        formResult.classList.add('text-red-500');
+                        formResult.innerHTML = resJson.message || "Something went wrong!";
+                    }
+                }
+            })
+            .catch(error => {
+                console.error("Form error:", error);
+                if (formResult) {
+                    formResult.classList.remove('text-blue-400', 'text-emerald-400');
+                    formResult.classList.add('text-red-500');
+                    formResult.innerHTML = "Network Error! Please try again.";
+                }
+            })
+            .finally(() => {
+                if (btnText) btnText.textContent = (window.currentLang === 'en') ? "Book Free Strategy Call" : "मुफ्त परामर्श कॉल बुक करें";
+                if (submitBtn) submitBtn.disabled = false;
+            });
+
+            return false;
+        };
+
+        // DOM Initializations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const mobileMenu = document.getElementById('mobileMenu');
             if (mobileMenuBtn && mobileMenu) {
-                mobileMenuBtn.addEventListener('click', () => {
+                mobileMenuBtn.onclick = function() {
                     mobileMenu.classList.toggle('hidden');
-                });
+                };
 
-                document.querySelectorAll('.mobile-link').forEach(link => {
-                    link.addEventListener('click', () => {
+                document.querySelectorAll('.mobile-link').forEach(function(link) {
+                    link.onclick = function() {
                         mobileMenu.classList.add('hidden');
-                    });
+                    };
                 });
             }
 
-            // 3. Accordion Handler
-            document.querySelectorAll('.acc-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
+            // Accordions
+            document.querySelectorAll('.acc-btn').forEach(function(btn) {
+                btn.onclick = function() {
                     const body = this.nextElementSibling;
                     const icon = this.querySelector('i');
-                    
                     if (body && body.classList.contains('hidden')) {
                         body.classList.remove('hidden');
                         if (icon) icon.classList.add('rotate-180');
@@ -589,79 +552,8 @@ END:VCARD`;
                         body.classList.add('hidden');
                         if (icon) icon.classList.remove('rotate-180');
                     }
-                });
+                };
             });
-
-            // 4. Generate QR Code
-            if (typeof QRCode !== 'undefined') {
-                new QRCode(document.getElementById("qrcode"), {
-                    text: window.location.href,
-                    width: 80,
-                    height: 80,
-                    colorDark : "#0b1220",
-                    colorLight : "#ffffff",
-                    correctLevel : QRCode.CorrectLevel.H
-                });
-            }
-
-            // 5. Mobile & Desktop AJAX Lead Form Handler
-            const form = document.getElementById('leadForm');
-            const formResult = document.getElementById('formResult');
-            const submitBtn = document.getElementById('submitBtn');
-            const btnText = document.getElementById('btnText');
-
-            if (form) {
-                form.addEventListener('submit', async function(e) {
-                    e.preventDefault();
-
-                    if (formResult) {
-                        formResult.classList.remove('hidden', 'text-red-500', 'text-emerald-400');
-                        formResult.classList.add('text-blue-400');
-                        formResult.innerHTML = (currentLang === 'en') ? "Sending..." : "भेजा जा रहा है...";
-                    }
-
-                    if (btnText) btnText.textContent = (currentLang === 'en') ? "Sending..." : "भेजा जा रहा है...";
-                    if (submitBtn) submitBtn.disabled = true;
-
-                    const formData = new FormData(form);
-                    const object = Object.fromEntries(formData);
-                    const json = JSON.stringify(object);
-
-                    try {
-                        const response = await fetch('https://api.web3forms.com/submit', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Accept': 'application/json'
-                            },
-                            body: json
-                        });
-
-                        const result = await response.json();
-
-                        if (response.status === 200 && result.success) {
-                            formResult.classList.remove('text-blue-400', 'text-red-500');
-                            formResult.classList.add('text-emerald-400');
-                            formResult.innerHTML = (currentLang === 'en') ? "✓ Success! We will contact you shortly." : "✓ सफलता! हम जल्द आपसे संपर्क करेंगे।";
-                            form.reset();
-                        } else {
-                            formResult.classList.remove('text-blue-400', 'text-emerald-400');
-                            formResult.classList.add('text-red-500');
-                            formResult.innerHTML = result.message || "Something went wrong!";
-                        }
-                    } catch (error) {
-                        console.error('Error:', error);
-                        if (formResult) {
-                            formResult.classList.remove('text-blue-400', 'text-emerald-400');
-                            formResult.classList.add('text-red-500');
-                            formResult.innerHTML = "Network error. Please try again.";
-                        }
-                    } finally {
-                        if (btnText) btnText.textContent = (currentLang === 'en') ? "Book Free Strategy Call" : "मुफ्त परामर्श कॉल बुक करें";
-                        if (submitBtn) submitBtn.disabled = false;
-                    }
-                });
-            }
         });
     </script>
 </body>
